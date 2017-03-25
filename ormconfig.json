@@ -1,0 +1,32 @@
+[
+  {
+    "name": "default",
+    "driver": {
+      "type": "postgres",
+      "host": "ec2-176-34-186-178.eu-west-1.compute.amazonaws.com",
+      "port": "5432",
+      "username": "wazmzkjmzkjjfz",
+      "password": "6cf685764e8b6e7f4378def43d945f0b7a2ed94a0398c90dd71dd2297a92cb4d",
+      "database": "d5hjtaeqai2v3b",
+      "schemaName": "cestak",
+      "extra": {
+        "ssl": true
+      }
+    },
+    "autoSchemaSync": true,
+    "entities": [
+      "src/entity/*.js"
+    ],
+    "subscribers": [
+      "src/subscriber/*.js,"
+    ],
+    "migrations": [
+      "src/migration/*.js"
+    ],
+    "cli": {
+      "entitiesDir": "src/entity",
+      "migrationsDir": "src/migration",
+      "subscribersDir": "src/subscriber"
+    }
+  }
+]
