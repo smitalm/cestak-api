@@ -34,6 +34,7 @@
     "typeorm": "0.0.11"
   },
   "scripts": {
-    "start": "$(npm bin)/tsc && node src/index.js"
+    "build": "$(npm bin)/tsc",
+    "start": "node src/index.js"
   }
 }
