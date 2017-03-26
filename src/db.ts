@@ -1,13 +1,10 @@
 import config from './config';
 import { createConnection } from 'typeorm';
 
-let dbOptions = null;
+let dbOptions = require('../ormconfig.json');
+
 if (config.DATABASE_URL) {
-    dbOptions = {
-        driver: {
-            url: config.DATABASE_URL
-        }
-    };
+    dbOptions.driver.url = config.DATABASE_URL;
 }
 
 export function openDbConnection() {
