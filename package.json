@@ -3,23 +3,10 @@
   "version": "0.0.1",
   "description": "cestak-api",
   "license": "MIT",
-  "readmeFilename": "README.md",
-  "author": {
-    "name": "Matej Smitala",
-    "email": "matej.smitala@gmail.com"
+  "engines": {
+    "node": "7.5.0",
+    "npm": "4.1.2"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/smitalm/cestak-api"
-  },
-  "bugs": {
-    "url": "https://github.com/smitalm/cestak-api/issues"
-  },
-  "tags": [
-    "cestak",
-    "typescript",
-    "express"
-  ],
   "devDependencies": {
   },
   "dependencies": {
@@ -35,6 +22,8 @@
   },
   "scripts": {
     "build": "./node_modules/.bin/tsc",
-    "start": "node src/index.js"
+    "postinstall": "npm run build",
+    "start": "node src/index.js",
+    "deploy": "git push origin master && git push heroku master"
   }
 }
