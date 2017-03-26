@@ -1,7 +1,7 @@
 import config from './config';
 import { createConnection } from 'typeorm';
 
-let dbOptions = require('../ormconfig.json');
+let dbOptions = require('../ormconfig.json')[0];
 
 if (config.DATABASE_URL) {
     dbOptions.driver.url = config.DATABASE_URL;
