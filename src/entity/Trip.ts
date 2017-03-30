@@ -1,4 +1,4 @@
-import { Entity, PrimaryColumn, Column, ManyToOne } from "typeorm";
+import { Entity, PrimaryColumn, Column, ManyToOne, JoinTable } from "typeorm";
 import { Car } from "./Car";
 import { Location } from './Location';
 
@@ -11,13 +11,15 @@ export class Trip {
     @Column()
     startTime: Date;
 
-    @ManyToOne(type => Location)
+    @ManyToOne(type => Location, { cascadeAll: true })
+    @JoinTable()
     startLocation: Location;
 
     @Column()
     endTime: Date;
 
-    @ManyToOne(type => Location)
+    @ManyToOne(type => Location, { cascadeAll: true })
+    @JoinTable()
     endLocation: Location;
 
     @Column()
@@ -29,6 +31,6 @@ export class Trip {
     @Column()
     transport: string;
 
-    @ManyToOne(type => Car, { nullable: true })
+    @ManyToOne(type => Car, { nullable: true, cascadeAll: true })
     car: Car;
 }

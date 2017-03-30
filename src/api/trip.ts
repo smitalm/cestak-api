@@ -16,10 +16,16 @@ trip.post('/', (req: Request, res: Response, next: NextFunction) => {
 });
 
 // Read
-trip.get('/', async (req: Request, res: Response) => {
+trip.get('/', (req: Request, res: Response, next: NextFunction) => {
     const tripRepository = getEntityManager().getRepository(Trip);
-    const result = await tripRepository.find();
-    res.send(result);
+    tripRepository
+        .createQueryBuilder('trip')
+        .orderBy('trip.startTime', 'DESC')
+        .leftJoinAndSelect("trip.startLocation", "startLocation")
+        .leftJoinAndSelect("trip.endLocation", "endLocation")
+        .getMany()
+        .then(result => res.send(result))
+        .catch(error => next(error));
 });
 
 trip.get('/:id', async (req: Request, res: Response) => {
@@ -29,10 +35,11 @@ trip.get('/:id', async (req: Request, res: Response) => {
 });
 
 // Update
-trip.put('/', async (req: Request, res: Response) => {
+trip.put('/', (req: Request, res: Response, next: NextFunction) => {
     const tripRepository = getEntityManager().getRepository(Trip);
-    const result = await tripRepository.find();
-    res.send(result);
+    tripRepository.persist(req.body)
+        .then(result => res.send(result))
+        .catch(error => next(error));
 });
 
 // Delete

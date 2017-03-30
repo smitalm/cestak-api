@@ -24,6 +24,7 @@
   },
   "scripts": {
     "build": "./node_modules/.bin/tsc",
+    "typeorm": "./node_modules/.bin/typeorm",
     "postinstall": "npm run build",
     "start": "node src/index.js",
     "deploy": "git push origin master && git push heroku master"
