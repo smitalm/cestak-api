@@ -1,6 +1,6 @@
 import { Entity, PrimaryColumn, Column, ManyToOne } from "typeorm";
-import { Route } from './Route';
 import { Car } from "./Car";
+import { Location } from './Location';
 
 @Entity()
 export class Trip {
@@ -11,12 +11,24 @@ export class Trip {
     @Column()
     startTime: Date;
 
+    @ManyToOne(type => Location)
+    startLocation: Location;
+
     @Column()
     endTime: Date;
 
-    @ManyToOne(type => Route, route => route.trips)
-    route: Route;
+    @ManyToOne(type => Location)
+    endLocation: Location;
 
-    @ManyToOne(type => Car, car => car.trips)
+    @Column()
+    distance: number;
+
+    @Column()
+    duration: number;
+
+    @Column()
+    transport: string;
+
+    @ManyToOne(type => Car, { nullable: true })
     car: Car;
 }

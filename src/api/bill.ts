@@ -16,7 +16,7 @@ bill.post('/', async (req: Request, res: Response) => {
 // Read
 bill.get('/', async (req: Request, res: Response) => {
     const billRepository = getEntityManager().getRepository(Bill);
-    const result = await billRepository.find();
+    const result = await billRepository.find(req.query);
     res.send(result);
 });
 

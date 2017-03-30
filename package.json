@@ -7,18 +7,20 @@
     "node": "7.5.0",
     "npm": "4.1.2"
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "dependencies": {
     "@types/body-parser": "^1.16.0",
     "@types/express": "^4.0.35",
     "@types/node": "^7.0.4",
-    "typescript": "^2.2.1",
+    "@types/winston": "^2.3.0",
     "body-parser": "^1.17.1",
+    "cors": "^2.8.2",
     "express": "^4.15.2",
     "pg": "^6.1.5",
     "reflect-metadata": "^0.1.9",
-    "typeorm": "0.0.11"
+    "typeorm": "0.0.11",
+    "typescript": "^2.2.1",
+    "winston": "^2.3.1"
   },
   "scripts": {
     "build": "./node_modules/.bin/tsc",

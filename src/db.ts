@@ -1,5 +1,6 @@
 import config from './config';
 import { createConnection } from 'typeorm';
+import { logger } from './logger';
 
 let dbOptions = require('../ormconfig.json')[0];
 
@@ -12,7 +13,7 @@ export function openDbConnection() {
     // TypeORM creates you connection pull to uses connections from pull on your requests
     return createConnection(dbOptions)
         .then(
-            connection => console.log(`TypeORM DB connection successful: ${connection.name}`),
-            error => console.log("TypeORM DB connection error: ", error)
+            connection => logger.info(`TypeORM DB connection successful: ${connection.name}`),
+            error => logger.error("TypeORM DB connection error: ", error)
         );
 }

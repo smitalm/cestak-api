@@ -1,4 +1,4 @@
-import { Router, Request, Response } from "express";
+import { Router, Request, Response, NextFunction } from "express";
 import { getEntityManager } from "typeorm";
 import { Trip } from '../entity/Trip';
 
@@ -7,10 +7,12 @@ let trip = Router();
 
 
 // Create
-trip.post('/', async (req: Request, res: Response) => {
+trip.post('/', (req: Request, res: Response, next: NextFunction) => {
     const tripRepository = getEntityManager().getRepository(Trip);
-    const result = await tripRepository.create(req.body);
-    res.send(result);
+    tripRepository
+        .persist(req.body)
+        .then(result => res.send(result))
+        .catch(error => next(error));
 });
 
 // Read

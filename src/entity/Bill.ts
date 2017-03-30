@@ -1,4 +1,5 @@
-import {Entity, PrimaryColumn, Column} from "typeorm";
+import { Entity, PrimaryColumn, Column, ManyToOne } from "typeorm";
+import { Location } from './Location';
 
 @Entity()
 export class Bill {
@@ -17,5 +18,18 @@ export class Bill {
 
     @Column()
     timestamp: Date;
+
+    @ManyToOne(type => Location)
+    location: Location;
+
+    public constructor(
+        fields?: {
+            price?: number,
+            amount?: number,
+            fuel?: string,
+            timestamp?: Date
+        }) {
+        if (fields) Object.assign(this, fields);
+    }
 
 }
